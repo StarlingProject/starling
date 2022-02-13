@@ -23,45 +23,9 @@ import "./App.css"
 
 function App() {
 
-  let history = useHistory();
   
   
-  useEffect(async () => {
-    const token = localStorage.getItem("FBIdToken");
-    const refresh_token = localStorage.getItem("RefToken");
-    if (token){
-        let authenticated;
-        const token = localStorage.FBIdToken;
-        const refresh_token = localStorage.RefToken;
-        if(token){
-        const decodedToken = jwtDecode(token);
-        if((decodedToken.exp * 1000 - Date.now()) < 600000){
 
-            try {
-              //   localStorage.removeItem("FBIdToken");
-              //   localStorage.removeItem("RefToken");
-                let data = {
-                    grant_type:"refresh_token",
-                    refresh_token: refresh_token 
-                }
-                axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyCstdil4PN6f-vkPZdVbzTAahqegqleNcU' , data).then((res) => {
-                    localStorage.setItem("FBIdToken", `Bearer ${res.data.access_token}`)
-                    localStorage.setItem("RefToken", `${res.data.refresh_token}`)
-                })
-                authenticated = false;
-            } catch (error) {
-                console.log(error);
-            }
-        } else {
-            authenticated = true;
-        }
-        }
-    }else{
-      history.push('/');
-      window.location.reload('/');
-    }
-    
-  }, []);
 
   return (
     <Provider store={store}>
