@@ -158,7 +158,7 @@ export default function Login() {
     axios
       .post("/login", userData)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         localStorage.setItem("RefToken", `${res.data.refresh_token}`)
         setValues({
