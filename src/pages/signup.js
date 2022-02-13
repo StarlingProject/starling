@@ -258,7 +258,7 @@ export default function Sign() {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-        localStorage.setItem("RefToken", `${refresh_token}`);
+        localStorage.setItem("RefToken", `${res.data.refresh_token}`);
         history.push("/home");
       })
       .catch((err) => {
